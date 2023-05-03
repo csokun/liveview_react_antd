@@ -1,50 +1,29 @@
 import React from "react";
-import { unmountComponentAtNode } from "react-dom";
 import { createRoot } from "react-dom/client";
+
 import EmployeeList from "./EmployeeList";
 
-function mounter(id: string, Component: React.ReactNode) {
-  const rootEl = document.getElementById(id);
-  const root = createRoot(rootEl!);
-  root.render(Component);
-
-  return (el: Element) => {
-    if (!unmountComponentAtNode(el)) {
-      console.warn("unmount failed", el);
-    }
-  };
-}
-
 export default {
-  items: [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ],
+  _rootEl: null,
 
   mounted() {
-    this.mountComponent(this.items);
+    // create react root element
+    const rootEl = document.getElementById(this.el.id);
+    this._rootEl = createRoot(rootEl!);
+
+    this.render([]); // render component with empty data
+
+    this.handleEvent("employee:updated", ({ items }) => {
+      this.render(JSON.parse(items));
+    });
   },
 
   destroyed() {
-    if (!this.unmountComponent) {
-      console.log("Component not set");
-      return;
-    }
-    console.log("unmountComponent");
-    this.unmountComponent(this.el);
+    if (!this._rootEl) return;
+    this._rootEl.unmount();
   },
 
-  mountComponent(items: any) {
-    this.unmountComponent = mounter(this.el.id, <EmployeeList items={items} />);
+  render(items: any) {
+    this._rootEl.render(<EmployeeList items={items} />);
   },
 };

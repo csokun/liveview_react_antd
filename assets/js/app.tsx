@@ -25,7 +25,7 @@ import topbar from "../vendor/topbar";
 import hooks from "./hooks";
 
 let csrfToken = document
-  .querySelector("meta[name='csrf-token']")
+  .querySelector("meta[name='csrf-token']")!
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },

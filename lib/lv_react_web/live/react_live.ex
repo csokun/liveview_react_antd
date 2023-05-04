@@ -8,7 +8,7 @@ defmodule LvReactWeb.ReactLive do
 
   def render(assigns) do
     ~H"""
-    <div id="employee-list" phx-hook="EmployeeList" phx-update="ignore"></div>
+    <div id="employee" phx-hook="Employee" phx-update="ignore"></div>
     """
   end
 
@@ -21,5 +21,9 @@ defmodule LvReactWeb.ReactLive do
            %{"key" => 2, "name" => "John", "age" => 42, "address" => "1- Downing Street"}
          ])
      })}
+  end
+
+  def handle_event("add_employee", params, socket) do
+    {:reply, params, socket}
   end
 end

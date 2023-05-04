@@ -1,3 +1,3 @@
-import EmployeeList from "./EmployeeList";
+import Employee from "./Employee";
 
-export default { EmployeeList };
+export default { Employee };

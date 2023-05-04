@@ -19,7 +19,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //
@@ -63,5 +63,10 @@ module.exports = {
         }
       }, {values})
     })
-  ]
+  ],
+  corePlugins: {
+    // resolve Antd & Tailwind style conflict
+    // ref. https://dev.to/fabiobiondi/react-antd-and-tailwind-fix-css-conflicts-5542
+    preflight: false
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import { Button, Form, Modal } from "antd";
 import EmployeeList from "./EmployeeList";
@@ -9,7 +9,6 @@ export interface EmployeeProps {
 }
 
 export default function Employee({ items, dispatch }: EmployeeProps) {
-  const [employeeList, setEmployeeList] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -34,17 +33,13 @@ export default function Employee({ items, dispatch }: EmployeeProps) {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    setEmployeeList(items);
-  }, [items]);
-
   return (
     <>
       <Button type="primary" onClick={() => showModal()}>
         Add Employee
       </Button>
 
-      <EmployeeList items={employeeList} />
+      <EmployeeList items={items} />
 
       <Modal
         width={800}

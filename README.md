@@ -1,5 +1,7 @@
 # Phoenix Liveview + React 18 + Antd
 
+![Lazy loading component](./preview.png)
+
 To start your Phoenix server:
 
 - Run `mix setup` to install and setup dependencies

@@ -1,7 +1,8 @@
 import React from "react";
+import { lazy } from "react";
 import { createRoot } from "react-dom/client";
 
-import Employee from "./Employee";
+const Employee = lazy(() => import("./Employee"));
 
 export default {
   _rootEl: null,
@@ -59,7 +60,6 @@ export default {
     // don't pass object reference react won't detect change
     // use object destructure like so
     const items = [...this._employees];
-
     this._rootEl.render(
       <React.StrictMode>
         <Employee items={items} dispatch={this.dispatch.bind(this)} />

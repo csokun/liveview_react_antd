@@ -7,6 +7,13 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+## Container
+
+```bash
+./container.sh
+# visit http://localhost:4000
+```
+
 ## References
 
 - https://stephenbussey.com/2022/04/13/react-in-liveview-how-and-why.html
